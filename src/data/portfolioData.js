@@ -43,7 +43,7 @@ export const portfolioData = {
           category: "Full Stack",
           tags: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL"],
           description: "Full-stack studio booking platform with secure authentication, automated booking workflows, and a powerful administrative dashboard.",
-          liveUrl: null,
+          liveUrl: "https://studio.soulmediaa.com",
           features: [
             "Designed and developed a scalable studio booking system",
             "Implemented role-based authentication & booking workflows",
@@ -185,7 +185,7 @@ export const portfolioData = {
           category: "تطبيقات متكاملة",
           tags: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL"],
           description: "منصة متكاملة لحجز الاستوديوهات تتضمن المصادقة الآمنة، مسارات الحجز التلقائية، ولوحة تحكم إدارية شاملة.",
-          liveUrl: null,
+          liveUrl: "https://studio.soulmediaa.com",
           features: [
             "تصميم وتطوير نظام حجز استوديوهات قابل للتوسع",
             "تطبيق نظام المصادقة والصلاحيات ومسارات العمل",

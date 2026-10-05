@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, Languages, ArrowUpRight } from 'lucide-react';
 
 export default function Navbar({ lang, setLang, t }) {
   const [scrolled, setScrolled] = useState(false);
@@ -31,12 +31,19 @@ export default function Navbar({ lang, setLang, t }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleLanguage = () => {
+    const nextLang = lang === 'en' ? 'ar' : 'en';
+    setLang(nextLang);
+    document.documentElement.dir = nextLang === 'ar' ? 'rtl' : 'ltr';
+    document.body.dir = nextLang === 'ar' ? 'rtl' : 'ltr';
+  };
+
   const navItems = [
-    { id: 'about', label: 'ABOUT' },
-    { id: 'stack', label: 'STACK' },
-    { id: 'projects', label: 'WORK' },
-    { id: 'experience', label: 'JOURNEY' },
-    { id: 'contact', label: 'CONTACT' }
+    { id: 'about', label: lang === 'en' ? 'ABOUT' : 'عن المهندس' },
+    { id: 'stack', label: lang === 'en' ? 'STACK' : 'التقنيات' },
+    { id: 'projects', label: lang === 'en' ? 'WORK' : 'المشاريع' },
+    { id: 'experience', label: lang === 'en' ? 'JOURNEY' : 'الخبرات' },
+    { id: 'contact', label: lang === 'en' ? 'CONTACT' : 'التواصل' }
   ];
 
   return (
@@ -165,9 +172,31 @@ export default function Navbar({ lang, setLang, t }) {
           </nav>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            {/* Arabic / EN Language Toggle Button */}
+            <button
+              onClick={toggleLanguage}
+              style={{
+                background: 'rgba(255, 255, 255, 0.04)',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                color: 'var(--text-primary)',
+                padding: '6px 14px',
+                borderRadius: '9999px',
+                cursor: 'pointer',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              <Languages size={14} color="#F7E2C0" />
+              <span>{lang === 'en' ? 'العربية' : 'EN'}</span>
+            </button>
+
             {/* Let's Talk CTA Button */}
             <a href="#contact" className="btn-champagne" style={{ padding: '8px 18px', fontSize: '12px' }}>
-              <span>LET'S TALK</span>
+              <span>{lang === 'en' ? "LET'S TALK" : "تواصل معي"}</span>
               <ArrowUpRight size={14} />
             </a>
           </div>
@@ -175,6 +204,20 @@ export default function Navbar({ lang, setLang, t }) {
 
         {/* Mobile Controls */}
         <div style={{ display: 'none', alignItems: 'center', gap: '12px' }} className="mobile-only">
+          <button
+            onClick={toggleLanguage}
+            style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              color: 'var(--text-primary)',
+              padding: '6px 12px',
+              borderRadius: '9999px',
+              fontSize: '12px',
+              fontFamily: 'var(--font-mono)'
+            }}
+          >
+            {lang === 'en' ? 'العربية' : 'EN'}
+          </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             style={{
@@ -224,7 +267,7 @@ export default function Navbar({ lang, setLang, t }) {
             className="btn-champagne"
             style={{ marginTop: '8px', justifyContent: 'center' }}
           >
-            LET'S TALK
+            {lang === 'en' ? "LET'S TALK" : "تواصل معي"}
           </a>
         </div>
       )}
